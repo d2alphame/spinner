@@ -15,3 +15,4 @@ Everything there is optional except the return value. The return value can be pl
 + when status is absent, it defaults to `200 OK`
 + A `Content-Type` header is automatically added and its value depends on the return value.
 
+When the return value is a json object or array, Content-Type is `application/json`. When it's html, the Content-Type is `text/html`, and `text/pain` when it's plain text.

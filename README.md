@@ -25,5 +25,16 @@ In the above above example, because
 2. The route is absent, so it defaults to `/`.
 3. The return status is absent, so it defaults to 200 OK.
 
-Also, because a json object is returned, the `Content-Type` header is set to `application/json`
+Also, because a json object is returned, the `Content-Type` header is set to `application/json`.
 
+The following is an example which returns an html on a get request for /lake_laogai with a 403 (forbidden) status
+```
+get /lake_laogai 403
+<html>
+  <head>
+    <title>Forbidden</title>
+   </head>
+   <body><p>Long Feng forbids you from entering here</p></body>
+</html>
+```
+Because it returns an html, the  `Content-Type` header is set to `text/html`

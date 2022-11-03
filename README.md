@@ -1,5 +1,5 @@
 # Spinner
-A simple language for creating web applications much like sinatra
+A simple language for creating web applications. It is inspired by the simplicity of Sinatra. It takes that simplicity and attempts to make it even simpler :D
 
 The route is made up of the following parts.
 + The methods
@@ -15,4 +15,13 @@ Everything there is optional except the return value. The return value can be pl
 + when status is absent, it defaults to `200 OK`
 + A `Content-Type` header is automatically added and its value depends on the return value.
 
-When the return value is a json object or array, Content-Type is `application/json`. When it's html, the Content-Type is `text/html`, and `text/pain` when it's plain text.
+When the return value is a json object or array, Content-Type is `application/json`. When it's html, the Content-Type is `text/html`, and `text/pain` when it's plain text. So the following is a really short - and complete - spinner application:
+```
+{ message: "Hello, Avatar" }
+```
+In the above above example, because
+1. The methods list is absent, so it defaults to `get, post`. That's the `get` method and the `post` method.
+2. The route is absent, so it defaults to `/`.
+3. The return status is absent, so it defaults to 200 OK.
+Also, because a json object is returned, the `Content-Type` header is set to `application/json`
+```

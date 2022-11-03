@@ -37,4 +37,17 @@ get /lake_laogai 403
    <body><p>Long Feng forbids you from entering here</p></body>
 </html>
 ```
-Because it returns an html, the  `Content-Type` header is set to `text/html`
+Because it returns an html, the  `Content-Type` header is set to `text/html`.  
+The following will do the same thing except some information is logged and the return is done from a function. Note the use of the `fn` keyword used to define the function.
+```
+get /lake_laogai 403 fn{
+  logger.info "Attempt to infilterate the Dai Lee"
+  return
+    <html>
+      <head>
+        <title>Forbidden</title>
+      </head>
+      <body><p>Long Feng forbids you from entering here</p></body>
+    </html>
+}
+```

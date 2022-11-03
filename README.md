@@ -7,6 +7,7 @@ The route is made up of the following parts.
 + The headers
 + The return status
 + The return value
+
 Everything there is optional except the return value. The return value can be plain text (surrounded by quotes), json array, json object, or html/xml. It could also be a value returned from a function defined with the `fn` keyword.
 
 ## Default Values
@@ -23,5 +24,6 @@ In the above above example, because
 1. The methods list is absent, so it defaults to `get, post`. That's the `get` method and the `post` method.
 2. The route is absent, so it defaults to `/`.
 3. The return status is absent, so it defaults to 200 OK.
+
 Also, because a json object is returned, the `Content-Type` header is set to `application/json`
-```
+

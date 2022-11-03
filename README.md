@@ -21,9 +21,9 @@ When the return value is a json object or array, Content-Type is `application/js
 { message: "Hello, Avatar" }
 ```
 In the above above example, because
-1. The methods list is absent, so it defaults to `get, post`. That's the `get` method and the `post` method.
-2. The route is absent, so it defaults to `/`.
-3. The return status is absent, so it defaults to 200 OK.
+1. The methods list is absent, it defaults to `get, post`. That's the `get` method and the `post` method.
+2. The route is absent, it defaults to `/`.
+3. The return status is absent, it defaults to 200 OK.
 
 Also, because a json object is returned, the `Content-Type` header is set to `application/json`.
 

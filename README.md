@@ -51,3 +51,8 @@ get /lake_laogai 403 fn{
     </html>
 }
 ```
+Specify the keyword `nil` to indicate an empty response body. When this is the case, the `Content-Type` header will be absent in the response and the `Content-Length` header would be set to 0. For example:
+```
+get, post /azula-love-interest 204 nil
+```
+In the above example, the response body for a get or post request to the route `/azula-love-interest` would be empty, the status would be set to 204, the `Content-Type` header would be absent and the `Content-Length` header would be set to 0.

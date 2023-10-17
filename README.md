@@ -16,7 +16,7 @@ Everything there is optional except the return value. The return value can be pl
 + when status is absent, it defaults to `200 OK`
 + A `Content-Type` header is automatically added and its value depends on the return value.
 
-When the return value is a json object or array, Content-Type is `application/json`. When it's html, the Content-Type is `text/html`, and `text/pain` when it's plain text. It should be noted that Spinner listens on Port 8000 by default. So the following is a really short - and complete - spinner application:
+When the return value is a json object or array, Content-Type is `application/json`. When it's html, the Content-Type is `text/html`, and `text/plain` when it's plain text. It should be noted that Spinner listens on Port 8000 by default. So the following is a really short - and complete - spinner application:
 ```
 { message: "Hello, Avatar" }
 ```

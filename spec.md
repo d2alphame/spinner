@@ -52,11 +52,34 @@ Start a Spinner app by pointing the CLI at a file:
 spinner app.spn
 ```
 
-Override the default port at startup:
+### CLI options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--port` | Port to listen on | `8000` |
+| `--log` | Minimum log level | `info` |
 
 ```sh
 spinner app.spn --port 3000
+spinner app.spn --log critical
+spinner app.spn --log none
+spinner app.spn --port 3000 --log warn
 ```
+
+### Log levels
+
+Log levels from lowest to highest: `debug`, `info`, `warn`, `critical`, `fatal`. Only messages at or above the specified level are logged. Use `none` to disable logging entirely.
+
+| `--log` level | Logs |
+|---|---|
+| `debug` | debug, info, warn, critical, fatal |
+| `info` | info, warn, critical, fatal |
+| `warn` | warn, critical, fatal |
+| `critical` | critical, fatal |
+| `fatal` | fatal only |
+| `none` | nothing |
+
+### Log output
 
 Logs go to stdout by default and can be redirected using standard shell mechanisms:
 
@@ -717,9 +740,9 @@ response[body]
 
 ## Logging
 
-Spinner injects a `logger` object into every `fn{}` block. Logs go to stdout by default and can be redirected with standard shell mechanisms.
+Spinner injects a `logger` object into every `fn{}` block. Logs go to stdout by default and can be redirected with standard shell mechanisms. The minimum log level is configured at the command line with `--log` (default: `info`). See [Running Spinner](#running-spinner) for the full level reference.
 
-### Log levels
+### Logger methods
 
 ```
 logger.debug "..."
@@ -728,6 +751,8 @@ logger.warn "..."
 logger.critical "..."
 logger.fatal "..."
 ```
+
+Messages below the configured log level are silently ignored. For example, with `--log critical`, calls to `logger.debug`, `logger.info`, and `logger.warn` have no effect.
 
 Spinner also logs errors automatically when something goes wrong inside a `fn{}` block.
 

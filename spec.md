@@ -986,7 +986,7 @@ put /notes/[guid]:id fn{
     res[body] = updated
 }
 
-delete /notes/[guid]:id 204 nil fn{
+delete /notes/[guid]:id 204 fn{
     userId = auth.decode(req[headers][Authorization])[id]
     findNote(req[params][id], userId)
     db.delete("notes", req[params][id])

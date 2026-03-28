@@ -1,5 +1,5 @@
 # Spinner
-A simple language for creating web applications inspired by the simplicity of Sinatra. It then takes that simplicity and attempt to make it even simpler. No fluff, no cruft, just your app.
+A simple language for creating web applications inspired by the simplicity of Sinatra. It then takes that simplicity and attempt to make it even simpler. No cruft, no fluff, just your stuff.
 
 The route is made up of the following parts.
 + The methods

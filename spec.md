@@ -183,7 +183,7 @@ post /users/login fn{ ... }
 A route is made up of the following parts:
 
 ```
-[method] [path] [status] [return value | fn{ ... }]
+[method] [path] [status] [response headers] [return value | fn{ ... }]
 ```
 
 Every part is optional except the return value.
@@ -239,6 +239,24 @@ If no catch-all is defined, Spinner returns its own default:
 ```
 with a `404` status.
 
+### Long paths
+
+When a path is too long to fit on one line, break it at any `/` and continue on the next line. The `/` must be the last character on the line, followed by optional whitespace and a newline. Spinner joins the segments back into a single path.
+
+```
+get /this/route/
+        is/too/long/
+        to/fit/on/
+        a/
+        single/line 200 fn{ ... }
+```
+
+Is equivalent to:
+
+```
+get /this/route/is/too/long/to/fit/on/a/single/line 200 fn{ ... }
+```
+
 ### Status
 
 The HTTP status code to return:
@@ -248,6 +266,53 @@ get /secret 403
 <html>
   <body><p>Forbidden</p></body>
 </html>
+```
+
+### Response headers
+
+Specify response headers for a route in a parenthesised block after the status code, with each header on its own line in `Header-Name: Value` format:
+
+```
+post /some/path 200
+(
+  First-Header: Value of first header
+  Second-Header: Value of second header
+)
+fn {
+    ...
+}
+```
+
+Header values can be interpolated using `$` for simple values and `{}` for expressions:
+
+```
+post /some/path 200
+(
+  Content-Disposition: attachment; filename="$filename"
+  X-Request-Id: {generateId()}
+)
+fn {
+    ...
+}
+```
+
+For brevity, the block can be written on a single line with comma-separated headers:
+
+```
+post /some/path 200 (X-Custom-Header: value, X-Another: value) fn { ... }
+```
+
+Headers set in the block can be added to or overridden dynamically inside `fn{}` using `res[headers]`:
+
+```
+post /some/path 200
+(
+  X-Custom-Header: static-value
+)
+fn {
+    res[headers][X-Custom-Header] = "overridden value"
+    res[headers][X-Extra-Header] = "dynamic value"
+}
 ```
 
 ---

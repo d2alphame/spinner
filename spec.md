@@ -786,10 +786,31 @@ Only one class per segment. `[guid]` classes do not require a length constraint 
 | `[hex]` | Hexadecimal |
 | `[uhex]` | Upper case hexadecimal |
 | `[lhex]` | Lower case hexadecimal |
-| `[urlenc]` | URL-encoded string |
+| `[urlenc]` | URL-encoded string — validated and automatically decoded |
+| `[2version]` | 2-part semantic version number e.g. `1.3` |
+| `[3version]` | 3-part semantic version number e.g. `3.0.0` |
+| `[v2version]` | 2-part version number with `v` prefix e.g. `v3.2` |
+| `[v3version]` | 3-part version number with `v` prefix e.g. `v3.4.1` |
+| `[date]` | Date in `yyyymmdd` format e.g. `20260329` |
+| `[ddate]` | Dash-separated date in `yyyy-mm-dd` format e.g. `2026-03-29` |
 | `[uguid]` | GUID, upper case |
 | `[lguid]` | GUID, lower case |
 | `[guid]` | GUID, any case |
+
+### [urlenc] validation and decoding
+
+When a path segment uses `[urlenc]`, Spinner performs two steps before the handler is invoked:
+
+1. **Validates** — the segment may only contain valid URL-encoded characters, and every `%` must be followed immediately by exactly 2 hex digits.
+2. **Decodes** — the value is automatically decoded so `req[params]` contains the plain decoded string. The developer never needs to decode it manually.
+
+```
+get /search/[urlenc]:query fn{
+    logger.info "Searching for $req[params][query]"
+}
+```
+
+A request to `/search/hello%20world` would give `req[params][query]` the value `hello world`.
 
 ### Examples
 

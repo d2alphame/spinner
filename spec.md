@@ -781,6 +781,7 @@ Only one class per segment. `[guid]` classes do not require a length constraint 
 | `[alnum]` | Alphanumeric |
 | `[ualnum]` | Upper case alphabets and numbers |
 | `[lalnum]` | Lower case alphabets and numbers |
+| `[num]` | Numeric digits |
 | `[base64]` | URL-safe Base64 |
 | `[hex]` | Hexadecimal |
 | `[uhex]` | Upper case hexadecimal |
@@ -797,6 +798,8 @@ get /notes/[guid]:id fn{ ... }
 get /users/[lalpha:3-20]:username fn{ ... }
 get /files/[hex:32]:hash fn{ ... }
 get /tokens/[base64:64]:token fn{ ... }
+get /users/[num]:id fn{ ... }
+get /page/[num:1-5]:page fn{ ... }
 ```
 
 ---

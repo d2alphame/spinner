@@ -396,7 +396,6 @@ Spinner has four string forms:
 | `'...'` | No | No |
 | `"""..."""` | Yes | Yes |
 | `'''...'''` | Yes | No |
-| `'''...'''` | No | No |
 
 ### Interpolation
 
@@ -414,6 +413,57 @@ Use `{}` for expressions and function calls:
 ```
 "Result: {someFunction(name)}"
 "Total: {items.length * price}"
+```
+
+### Escaping
+
+Escape sequences are only recognised inside interpolating strings (`"..."` and `"""..."""`). In non-interpolating strings (`'...'` and `'''...'''`), backslash is always literal — nothing is escaped.
+
+| Sequence | Result |
+|---|---|
+| `\"` | Literal double quote |
+| `\$` | Literal dollar sign |
+| `\{` | Literal opening brace |
+| `\\` | Literal backslash |
+| `\n` | Newline |
+| `\r` | Carriage return |
+| `\t` | Tab |
+
+Examples:
+```
+"Hello \n World"       newline
+"Cost: \$100"          literal dollar sign
+"Path: C:\\users"      literal backslash
+"Say \"hello\""        literal double quote
+```
+
+In a non-interpolating string, everything is literal:
+```
+'Cost: $100'           literal dollar sign, not interpolation
+'Hello \n World'       literal backslash-n, not a newline
+'Path: C:\users'       literal backslash
+```
+
+### Concatenation
+
+Use `+` to concatenate strings:
+
+```
+"Hello, " + name
+'Hello, ' + name
+req[params][first] + " " + req[params][last]
+```
+
+Concatenation is the way to mix non-interpolating strings with variables:
+
+```
+'Welcome to ' + siteName + '!'
+```
+
+vs the interpolating equivalent:
+
+```
+"Welcome to $siteName!"
 ```
 
 ---

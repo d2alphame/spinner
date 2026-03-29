@@ -395,6 +395,7 @@ Spinner has four string forms:
 | `"..."` | No | Yes |
 | `'...'` | No | No |
 | `"""..."""` | Yes | Yes |
+| `'''...'''` | Yes | No |
 | `'''...'''` | No | No |
 
 ### Interpolation
